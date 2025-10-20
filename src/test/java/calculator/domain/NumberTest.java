@@ -25,4 +25,16 @@ class NumberTest {
                 .hasMessage(errorMessage);
     }
 
+    @DisplayName("validateIntegerFormat() : 양수 형식이 아닌 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"+369,", "-3", "&6", ".9"})
+    void validateIntegerFormat_number_fail(String number) throws Exception{
+        //given
+        String errorMessage = "[ERROR] 양수 형식이 아닙니다.";
+
+        //when & then
+        assertThatThrownBy(() -> new Number(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(errorMessage);
+    }
 }
