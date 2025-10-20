@@ -11,6 +11,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class NumberTest {
 
+    @DisplayName("constructor() : 양수가 정상적으로 입력된 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"369", "36", "9"})
+    void constructor_number_success(String number) throws Exception {
+        //given
+        Number positiveNumber = new Number(number);
+
+        // when & then
+        assertThat(positiveNumber.getNumber()).isEqualTo(Integer.parseInt(number));
+    }
 
     @DisplayName("validateBlank() : 양수가 빈 값인 경우")
     @ParameterizedTest
